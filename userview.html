@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details - MoneyCore Admin</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 1rem; }
+        .container { max-width: 800px; margin: 2rem auto; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: #10b981; text-decoration: none; font-weight: bold; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        .profile-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+        .profile-header h2 { margin: 0; }
+        .status { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .status.active { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .status.banned { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .balance-box { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 1rem; border-radius: 8px; text-align: center; margin-bottom: 2rem; }
+        .balance-box h3 { margin: 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; }
+        .balance-box h1 { margin: 0.5rem 0 0 0; color: #10b981; font-size: 3rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 1rem; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #334155; }
+        th { color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="deksi.html" class="back-btn">&larr; Back to Admin Panel</a>
+        
+        <div class="card" id="profileCard">
+            <h3>Loading...</h3>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px;">Recent Earnings (Transactions)</h3>
+            <table>
+                <thead><tr><th>Date</th><th>Description</th><th>Amount</th></tr></thead>
+                <tbody id="transactionsTable"></tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px;">Withdrawal History</h3>
+            <table>
+                <thead><tr><th>Date</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody id="withdrawalsTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script>
+        // URL থেকে ID নেওয়া
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('id');
+
+        async function loadUserData() {
+            if (!userId) {
+                document.getElementById('profileCard').innerHTML = "<h3 style='color:red;'>User ID not found in URL!</h3>";
+                return;
+            }
+
+            // ১. প্রোফাইল লোড
+            const { data: profile, error } = await _supabase.from('profiles').select('*').eq('id', userId).single();
+            if (error || !profile) {
+                document.getElementById('profileCard').innerHTML = "<h3 style='color:red;'>User not found or access denied.</h3>";
+                return;
+            }
+
+            const statusClass = profile.is_banned ? 'banned' : 'active';
+            const statusText = profile.is_banned ? 'BANNED' : 'ACTIVE';
+            
+            document.getElementById('profileCard').innerHTML = `
+                <div class="profile-header">
+                    <div>
+                        <h2>${profile.username || 'No Username'}</h2>
+                        <p style="color: #94a3b8; margin: 0.2rem 0;">${profile.email}</p>
+                        <p style="color: #64748b; font-size: 0.8rem; margin-top: 0.5rem;">Joined: ${new Date(profile.created_at).toLocaleDateString()}</p>
+                    </div>
+                    <span class="status ${statusClass}">${statusText}</span>
+                </div>
+                <div class="balance-box">
+                    <h3>Current Balance</h3>
+                    <h1>$${Number(profile.balance).toFixed(2)}</h1>
+                    <p style="color: #64748b; margin-top: 0.5rem; font-size: 0.9rem;">Total Earned: $${Number(profile.total_earned).toFixed(2)}</p>
+                </div>
+            `;
+
+            // ২. ট্রানজেকশন লোড
+            const { data: trans } = await _supabase.from('transactions').select('*').eq('user_id', userId).order('created_at', { ascending: false });
+            const transTable = document.getElementById('transactionsTable');
+            transTable.innerHTML = "";
+            if (trans && trans.length > 0) {
+                trans.forEach(t => {
+                    const color = t.amount > 0 ? '#10b981' : '#ef4444';
+                    transTable.innerHTML += `
+                        <tr>
+                            <td>${new Date(t.created_at).toLocaleDateString()}</td>
+                            <td>${t.description}</td>
+                            <td style="color: ${color}; font-weight: bold;">${t.amount > 0 ? '+' : ''}$${Number(t.amount).toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                transTable.innerHTML = `<tr><td colspan="3" style="text-align: center; color: #64748b;">No transactions found.</td></tr>`;
+            }
+
+            // ৩. উইথড্র লোড
+            const { data: withs } = await _supabase.from('withdrawals').select('*').eq('user_id', userId).order('created_at', { ascending: false });
+            const withTable = document.getElementById('withdrawalsTable');
+            withTable.innerHTML = "";
+            if (withs && withs.length > 0) {
+                withs.forEach(w => {
+                    const color = w.status === 'pending' ? '#f59e0b' : (w.status === 'approved' ? '#10b981' : '#ef4444');
+                    withTable.innerHTML += `
+                        <tr>
+                            <td>${new Date(w.created_at).toLocaleDateString()}</td>
+                            <td>${w.method.toUpperCase()}</td>
+                            <td style="font-weight: bold;">$${Number(w.amount).toFixed(2)}</td>
+                            <td style="color: ${color}; text-transform: uppercase; font-weight: bold; font-size: 0.8rem;">${w.status}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                withTable.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #64748b;">No withdrawal history found.</td></tr>`;
+            }
+        }
+
+        loadUserData();
+    </script>
+</body>
+</html>

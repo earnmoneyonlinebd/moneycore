@@ -1,0 +1,345 @@
+/* MoneyCore - Professional Dark Theme */
+:root {
+    --bg-color: #0b0f19;
+    --text-color: #f8fafc;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --primary: #10b981; /* Professional Green */
+    --primary-hover: #059669;
+    --text-muted: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: var(--primary);
+}
+nav .logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+}
+nav .logo span {
+    color: var(--text-color);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    background: radial-gradient(circle at center, #1e293b 0%, #0b0f19 100%);
+}
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+.hero p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.1s;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* Container & Cards */
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-3px);
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Typography Utility */
+h2, h3 { font-weight: 700; }
+.text-muted { color: var(--text-muted); }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    margin-top: 4rem;
+}
+footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+footer a:hover { color: var(--primary); }
+
+/* Form Professional Inputs */
+.input-group {
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.input-field {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    user-select: none;
+}
+.status-text {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+/* SVG Eye Icon Style */
+.eye-icon {
+    position: absolute;
+    right: 12px;
+    top: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eye-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-muted);
+    transition: stroke 0.3s;
+}
+.eye-icon:hover svg {
+    stroke: var(--primary);
+}
+
+/* Multi-step Form Styles */
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 0 10px;
+}
+.progress-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 100%;
+    background: var(--border-color);
+    z-index: 1;
+}
+.progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 0%;
+    background: var(--primary);
+    z-index: 2;
+    transition: width 0.3s ease;
+}
+.step-circle {
+    width: 30px;
+    height: 30px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+.step-circle.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+.step-circle.completed {
+    border-color: var(--primary);
+    background: var(--card-bg);
+    color: var(--primary);
+}
+
+/* Hide/Show Steps */
+.step {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.step.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+.btn-outline:hover {
+    background: var(--border-color);
+}
+
+/* Perfect Progress Bar */
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding: 0 10px;
+}
+.progress-line-bg {
+    position: absolute;
+    top: 50%;
+    left: 25px; /* Half of circle width */
+    right: 25px;
+    transform: translateY(-50%);
+    height: 2px;
+    background: var(--border-color);
+    z-index: 1;
+}
+.progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 0%;
+    background: var(--primary);
+    z-index: 2;
+    transition: width 0.3s ease;
+}
+.step-circle {
+    width: 32px;
+    height: 32px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+.step-circle.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+.step-circle.completed {
+    border-color: var(--primary);
+    background: var(--card-bg);
+    color: var(--primary);
+}
+
+/* SVG Checkmark for Completed Step */
+.step-circle.completed svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--primary);
+    stroke-width: 3;
+    fill: none;
+}

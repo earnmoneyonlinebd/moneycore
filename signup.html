@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MoneyCore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">Money<span>Core</span></div>
+        <div><a href="index.html">Home</a></div>
+    </nav>
+
+    <section class="container" style="max-width: 450px; margin-top: 3rem; margin-bottom: 3rem;">
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Create Account</h2>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-line-bg"></div>
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="step-circle active" id="indicator1">1</div>
+                <div class="step-circle" id="indicator2">2</div>
+                <div class="step-circle" id="indicator3">3</div>
+                <div class="step-circle" id="indicator4">4</div>
+            </div>
+
+            <form id="signupForm">
+                <!-- STEP 1: Basic Info -->
+                <div class="step active" id="step1">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" class="input-field" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="username" class="input-field" placeholder="johndoe123" required>
+                        <span id="usernameStatus" class="status-text"></span>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="email" class="input-field" placeholder="example@email.com" required>
+                    </div>
+                    <button type="button" class="btn" style="width:100%; margin-top:1rem;" onclick="nextStep(1)">Next</button>
+                </div>
+
+                <!-- STEP 2: OTP -->
+                <div class="step" id="step2">
+                    <p style="text-align:center; font-size:0.9rem; margin-bottom:1rem; color:var(--text-muted);">
+                        (Testing phase: Use code <b style="color:var(--primary);">123456</b>)
+                    </p>
+                    <div class="input-group">
+                        <label>Enter OTP</label>
+                        <input type="text" id="otpCode" class="input-field" placeholder="123456" maxlength="6">
+                        <span id="otpStatus" class="status-text"></span>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(2)">Back</button>
+                        <button type="button" class="btn" style="flex:2;" onclick="verifyOTP()">Verify OTP</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Password -->
+                <div class="step" id="step3">
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" class="input-field" placeholder="••••••••" required>
+                        <span class="eye-icon" onclick="togglePassword('password', this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="input-field" placeholder="••••••••" required>
+                        <span class="eye-icon" onclick="togglePassword('confirmPassword', this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </span>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(3)">Back</button>
+                        <button type="button" class="btn" style="flex:2;" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Finish -->
+                <div class="step" id="step4">
+                    <div style="margin-bottom: 2rem; text-align: center; background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px;">
+                        <label style="display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="termsCheckbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <span style="font-size: 0.9rem; color: var(--text-color);">
+                                I agree with <b>MoneyCore</b> Terms & Privacy
+                            </span>
+                        </label>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline" style="flex:1;" onclick="prevStep(4)">Back</button>
+                        <button type="submit" id="finishBtn" class="btn" style="flex:2;" disabled>Finish</button>
+                    </div>
+                </div>
+            </form>
+
+            <p id="msg" style="text-align:center; margin-top:1rem; font-weight:bold;"></p>
+            <p style="text-align:center; margin-top:1.5rem; font-size:0.9rem;">
+                Already have an account? <a href="login.html" style="color:var(--primary);">Login</a>
+            </p>
+        </div>
+    </section>
+
+    <script src="js/supabase.js"></script>
+    <script>
+        const svgEyeOpen = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+        const svgEyeClosed = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+        const svgCheck = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+        function togglePassword(inputId, iconContainer) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === "password" ? "text" : "password";
+            iconContainer.innerHTML = input.type === "password" ? svgEyeOpen : svgEyeClosed;
+        }
+
+        // Live Username Check
+        let isUsernameAvailable = false;
+        const usernameInput = document.getElementById('username');
+        const usernameStatus = document.getElementById('usernameStatus');
+
+        usernameInput.addEventListener('input', async (e) => {
+            const val = e.target.value.trim();
+            if (val.length < 3) {
+                usernameStatus.innerText = "Must be at least 3 characters";
+                usernameStatus.style.color = "#ef4444";
+                isUsernameAvailable = false;
+                return;
+            }
+            usernameStatus.innerText = "Checking...";
+            usernameStatus.style.color = "var(--text-muted)";
+            
+            const { data, error } = await _supabase.rpc('check_username_availability', { username_to_check: val });
+            if (!error) {
+                if (data) {
+                    usernameStatus.innerText = "Username is available!";
+                    usernameStatus.style.color = "var(--primary)";
+                    isUsernameAvailable = true;
+                } else {
+                    usernameStatus.innerText = "Username is taken!";
+                    usernameStatus.style.color = "#ef4444";
+                    isUsernameAvailable = false;
+                }
+            }
+        });
+
+        // Navigation
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function updateProgress() {
+            const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            
+            for (let i = 1; i <= totalSteps; i++) {
+                const circle = document.getElementById('indicator' + i);
+                if (i < currentStep) {
+                    circle.classList.add('completed');
+                    circle.classList.remove('active');
+                    circle.innerHTML = svgCheck;
+                } else if (i === currentStep) {
+                    circle.classList.add('active');
+                    circle.classList.remove('completed');
+                    circle.innerText = i;
+                } else {
+                    circle.classList.remove('active', 'completed');
+                    circle.innerText = i;
+                }
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            currentStep = step;
+            updateProgress();
+            document.getElementById('msg').innerText = "";
+        }
+
+        function nextStep(current) {
+            const msg = document.getElementById('msg');
+            
+            if (current === 1) {
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!document.getElementById('fullName').value || !usernameInput.value || !email) {
+                    msg.innerText = "Please fill all fields.";
+                    msg.style.color = "#ef4444"; return;
+                }
+                // Email Validation (Regex)
+                if (!emailRegex.test(email)) {
+                    msg.innerText = "Please enter a valid email address.";
+                    msg.style.color = "#ef4444"; return;
+                }
+                if (!isUsernameAvailable) {
+                    msg.innerText = "Please choose an available username.";
+                    msg.style.color = "#ef4444"; return;
+                }
+                showStep(2);
+            } 
+            else if (current === 3) {
+                const p1 = document.getElementById('password').value;
+                const p2 = document.getElementById('confirmPassword').value;
+                if (p1.length < 6) {
+                    msg.innerText = "Password must be at least 6 characters.";
+                    msg.style.color = "#ef4444"; return;
+                }
+                if (p1 !== p2) {
+                    msg.innerText = "Passwords do not match!";
+                    msg.style.color = "#ef4444"; return;
+                }
+                showStep(4);
+            }
+        }
+
+        function prevStep(current) {
+            showStep(current - 1);
+        }
+
+        function verifyOTP() {
+            const otp = document.getElementById('otpCode').value;
+            const msg = document.getElementById('msg');
+            if (otp === "123456") {
+                showStep(3);
+            } else {
+                msg.innerText = "Invalid OTP. Try 123456";
+                msg.style.color = "#ef4444";
+            }
+        }
+
+        // Terms Checkbox
+        document.getElementById('termsCheckbox').addEventListener('change', (e) => {
+            document.getElementById('finishBtn').disabled = !e.target.checked;
+        });
+
+        // Final Submit
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msg = document.getElementById('msg');
+            const btn = document.getElementById('finishBtn');
+            
+            msg.innerText = "Creating account...";
+            msg.style.color = "white";
+            btn.disabled = true;
+
+            const { data, error } = await _supabase.auth.signUp({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                options: {
+                    data: {
+                        full_name: document.getElementById('fullName').value,
+                        username: usernameInput.value
+                    }
+                }
+            });
+
+            if (error) {
+                msg.innerText = error.message;
+                msg.style.color = "#ef4444";
+                btn.disabled = false;
+            } else {
+                msg.innerText = "Success! Please login.";
+                msg.style.color = "var(--primary)";
+                setTimeout(() => window.location.href = 'login.html', 1500);
+            }
+        });
+    </script>
+</body>
+</html>

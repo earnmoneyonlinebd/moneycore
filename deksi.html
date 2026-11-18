@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - MoneyCore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Premium Admin Styles */
+        body { background: #050505; min-height: 100vh; margin: 0; padding: 1rem; font-family: 'Segoe UI', sans-serif; }
+        .admin-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; padding: 2.5rem 2rem; width: 100%; max-width: 400px; margin: 5rem auto; box-shadow: 0 0 40px rgba(16, 185, 129, 0.1); }
+        .input-icon-wrapper { position: relative; margin-bottom: 1.5rem; }
+        .input-icon-wrapper label { font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.5rem; display: block; font-weight: 600; }
+        .input-icon-wrapper svg { position: absolute; left: 16px; top: 38px; width: 20px; height: 20px; stroke: #475569; }
+        .input-icon-wrapper .input-field { padding: 14px 16px 14px 48px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; width: 100%; box-sizing: border-box; }
+        .btn-premium { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 1rem; transition: 0.3s; }
+        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
+        
+        /* Dashboard Styles */
+        #adminPanel { display: none; max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 2rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; overflow-x: auto; }
+        .nav-tabs button { background: transparent; border: none; color: #94a3b8; padding: 10px 15px; font-size: 1rem; cursor: pointer; font-weight: 600; border-radius: 8px; transition: 0.3s; white-space: nowrap; }
+        .nav-tabs button.active { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        
+        .user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .user-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; }
+        .user-card.banned { border-color: #ef4444; opacity: 0.8; }
+        .user-card h4 { margin: 0 0 0.5rem 0; color: #fff; font-size: 1.2rem; }
+        .user-card p { margin: 0 0 0.5rem 0; color: #94a3b8; font-size: 0.9rem; }
+        .user-card .balance { font-size: 1.5rem; font-weight: 800; color: #10b981; margin: 1rem 0; }
+        .card-actions { display: flex; gap: 8px; margin-top: 1rem; flex-wrap: wrap; }
+        .card-actions button, .card-actions a { flex: 1; min-width: 80px; padding: 8px; text-align: center; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+        .btn-ban { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .btn-unban { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .btn-msg { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .btn-view { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-content { background: #1e293b; padding: 2rem; border-radius: 12px; width: 90%; max-width: 400px; border: 1px solid #334155; }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <section id="loginScreen">
+        <div class="admin-card">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 0.3rem; font-weight: 800;">Admin Portal</h2>
+            <p style="text-align: center; font-size: 0.85rem; color: #10b981; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 2px;">Secure Access</p>
+            <form id="adminLoginForm">
+                <div class="input-icon-wrapper">
+                    <label>Admin Email</label>
+                    <input type="email" id="adminEmail" class="input-field" placeholder="admin@moneycore.com" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="input-icon-wrapper">
+                    <label>Password</label>
+                    <input type="password" id="adminPass" class="input-field" placeholder="••••••••" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <button type="submit" id="loginBtn" class="btn-premium">Initialize Login</button>
+            </form>
+            <p id="loginMsg" style="text-align: center; color: #ef4444; font-weight: bold; margin-top: 1rem;"></p>
+        </div>
+    </section>
+
+    <!-- Main Admin Panel -->
+    <section id="adminPanel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 style="color: #fff; margin: 0;">Control Center</h2>
+            <button onclick="logout()" class="btn btn-outline" style="border-color: #ef4444; color: #ef4444; padding: 0.5rem 1rem; border-radius: 8px; background: transparent; cursor: pointer;">Logout</button>
+        </div>
+
+        <div class="nav-tabs">
+            <button id="tab-users" class="active" onclick="showTab('users')">Manage Users</button>
+            <button id="tab-requests" onclick="showTab('requests')">Withdraw Requests</button>
+            <button id="tab-revenue" onclick="showTab('revenue')">Platform Revenue</button>
+        </div>
+        
+        <!-- USERS TAB -->
+        <div id="section-users">
+            <div class="user-grid" id="usersGrid"></div>
+        </div>
+
+        <!-- REQUESTS TAB -->
+        <div id="section-requests" style="display:none;">
+            <div class="card" style="overflow-x: auto; background: #1e293b; border-radius: 12px; border: 1px solid #334155;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; color: #fff;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #334155; color: #94a3b8;">
+                            <th style="padding: 15px;">User Email</th>
+                            <th style="padding: 15px;">Amount</th>
+                            <th style="padding: 15px;">Method</th>
+                            <th style="padding: 15px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestsTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REVENUE TAB -->
+        <div id="section-revenue" style="display:none;">
+            <div style="background: #1e293b; border: 1px solid #334155; padding: 2rem; border-radius: 12px; text-align: center;">
+                <h3 style="color: #94a3b8; margin-bottom: 1rem;">Total Platform Revenue (40% Cut)</h3>
+                <h1 id="platformRevenue" style="color: #10b981; font-size: 4rem; margin: 0;">$0.00</h1>
+                <p style="color: #64748b; margin-top: 1rem;">Lifetime profit from all surveys</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: #fff; margin-top: 0;">Send Message</h3>
+            <p id="msgRecipient" style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;"></p>
+            <textarea id="msgText" style="width: 100%; height: 100px; background: #0f172a; border: 1px solid #334155; color: #fff; padding: 10px; border-radius: 8px; margin-bottom: 1rem; box-sizing: border-box;" placeholder="Type your message here..."></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="closeModal()" class="btn" style="flex: 1; background: #334155; color: #fff; border: none; padding: 10px; border-radius: 6px; cursor: pointer;">Cancel</button>
+                <button onclick="sendMessage()" class="btn-premium" style="flex: 1; margin-top: 0;">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script>
+        const ADMIN_EMAIL = "abdullahalmustafa909@gmail.com"; 
+
+        async function checkExistingSession() {
+            const { data: { user } } = await _supabase.auth.getUser();
+            if (user && user.email === ADMIN_EMAIL) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                loadStats();
+                loadRequests();
+                loadUsers();
+            }
+        }
+
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPass').value;
+            const msg = document.getElementById('loginMsg');
+            const btn = document.getElementById('loginBtn');
+
+            if (email !== ADMIN_EMAIL) { msg.innerText = "Unauthorized!"; return; }
+            msg.innerText = "Authenticating..."; msg.style.color = "#94a3b8"; btn.disabled = true;
+
+            const { error } = await _supabase.auth.signInWithPassword({ email, password });
+            if (error) {
+                msg.innerText = "Invalid password!"; msg.style.color = "#ef4444"; btn.disabled = false;
+            } else {
+                msg.innerText = "Access Granted!"; msg.style.color = "#10b981";
+                setTimeout(() => { 
+                    document.getElementById('loginScreen').style.display = 'none'; 
+                    document.getElementById('adminPanel').style.display = 'block'; 
+                    loadStats(); loadRequests(); loadUsers(); 
+                }, 800);
+            }
+        });
+
+        function showTab(tab) {
+            document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('div[id^="section-"]').forEach(s => s.style.display = 'none');
+            
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.getElementById('section-' + tab).style.display = 'block';
+        }
+
+        async function loadStats() {
+            const { data } = await _supabase.from('platform_revenue').select('amount');
+            if (data) {
+                const total = data.reduce((sum, item) => sum + Number(item.amount), 0);
+                document.getElementById('platformRevenue').innerText = "$" + total.toFixed(2);
+            }
+        }
+
+        async function loadUsers() {
+            const { data: users, error } = await _supabase.from('profiles').select('*').order('created_at', { ascending: false });
+            
+            const grid = document.getElementById('usersGrid');
+            grid.innerHTML = "";
+
+            if (error) {
+                grid.innerHTML = `<p style="color:#ef4444;">Database Error: ${error.message}</p>`;
+                return;
+            }
+
+            if (users && users.length > 0) {
+                users.forEach(u => {
+                    const isBanned = u.is_banned;
+                    const banBtn = isBanned 
+                        ? `<button class="btn-unban" onclick="toggleBan('${u.id}', true)">Unban</button>` 
+                        : `<button class="btn-ban" onclick="toggleBan('${u.id}', false)">Block</button>`;
+                    
+                    grid.innerHTML += `
+                        <div class="user-card ${isBanned ? 'banned' : ''}">
+                            <h4>${u.username || 'No Username'} ${isBanned ? '🚫' : ''}</h4>
+                            <p>${u.email}</p>
+                            <div class="balance">$${Number(u.balance).toFixed(2)}</div>
+                            <div class="card-actions">
+                                ${banBtn}
+                                <button class="btn-msg" onclick="openMessage('${u.id}', '${u.email}')">Message</button>
+                                <a href="userview.html?id=${u.id}" class="btn-view">View Details</a>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                grid.innerHTML = "<p style='color:#94a3b8;'>No users found in database.</p>";
+            }
+        }
+
+        async function loadRequests() {
+            const { data: requests } = await _supabase.from('withdrawals').select('*').order('created_at', { ascending: false });
+            const table = document.getElementById('requestsTable');
+            table.innerHTML = "";
+
+            if (requests && requests.length > 0) {
+                for (let req of requests) {
+                    const { data: profile } = await _supabase.from('profiles').select('email').eq('id', req.user_id).single();
+                    const email = profile ? profile.email : 'Unknown';
+                    const actionBtn = req.status === 'pending' ? 
+                        `<button onclick="approveWithdraw('${req.id}', '${req.user_id}', ${req.amount})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer;">Approve</button>` : req.status;
+
+                    table.innerHTML += `
+                        <tr style="border-bottom: 1px solid #334155;">
+                            <td style="padding: 12px 15px;">${email}</td>
+                            <td style="padding: 12px 15px; color: #10b981; font-weight: bold;">$${Number(req.amount).toFixed(2)}</td>
+                            <td style="padding: 12px 15px;">${req.method.toUpperCase()}</td>
+                            <td style="padding: 12px 15px;">${actionBtn}</td>
+                        </tr>
+                    `;
+                }
+            } else {
+                table.innerHTML = `<tr><td colspan="4" style="text-align:center; padding: 2rem; color: #64748b;">No pending requests.</td></tr>`;
+            }
+        }
+
+        async function toggleBan(userId, currentStatus) {
+            const action = currentStatus ? "unban" : "ban";
+            if (!confirm(`Are you sure you want to ${action} this user?`)) return;
+            await _supabase.from('profiles').update({ is_banned: !currentStatus }).eq('id', userId);
+            loadUsers();
+        }
+
+        async function approveWithdraw(withdrawId, userId, amount) {
+            if (!confirm("Approve this withdrawal?")) return;
+            await _supabase.from('withdrawals').update({ status: 'approved' }).eq('id', withdrawId);
+            const { data: profile } = await _supabase.from('profiles').select('balance').eq('id', userId).single();
+            if (profile) {
+                await _supabase.from('profiles').update({ balance: profile.balance - amount }).eq('id', userId);
+            }
+            loadRequests();
+            loadStats();
+            loadUsers();
+        }
+
+        function openMessage(userId, email) {
+            document.getElementById('msgRecipient').innerText = "To: " + email;
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('messageModal').style.display = 'none';
+            document.getElementById('msgText').value = "";
+        }
+        function sendMessage() {
+            const text = document.getElementById('msgText').value;
+            if (!text) return alert("Message cannot be empty");
+            alert("Message sent successfully to user! (Demo)");
+            closeModal();
+        }
+
+        async function logout() {
+            await _supabase.auth.signOut();
+            window.location.reload();
+        }
+
+        checkExistingSession();
+    </script>
+</body>
+</html>

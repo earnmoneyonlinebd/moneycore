@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://earnmoneyonlinebd.github.io/moneycore/sitemap.xml
