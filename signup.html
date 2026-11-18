@@ -250,7 +250,7 @@
             msg.style.color = "white";
             btn.disabled = true;
 
-            const { data, error } = await _supabase.auth.signUp({
+            const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); const { data, error } = await _supabase.auth.signUp({
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
                 options: {

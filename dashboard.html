@@ -117,6 +117,10 @@
 
             const { data: profile } = await _supabase.from('profiles').select('balance, total_earned').eq('id', user.id).single();
             if (profile) {
+                const baseUrl = window.location.origin + window.location.pathname.replace("dashboard.html", "signup.html");
+                document.getElementById("refLink").value = baseUrl + "?ref=" + profile.referral_code;
+                const { count } = await _supabase.from("profiles").select("*", { count: "exact", head: true }).eq("referred_by", user.id);
+                document.getElementById("refCount").innerText = "Total Referrals: " + (count || 0);
                 document.getElementById('balanceText').innerText = "$" + Number(profile.balance).toFixed(2);
                 document.getElementById('totalEarnedText').innerText = "$" + Number(profile.total_earned).toFixed(2);
             }
@@ -207,6 +211,13 @@
             window.location.href = 'login.html';
         }
 
+        function copyRefLink() {
+            const copyText = document.getElementById("refLink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            alert("Referral link copied!");
+        }
         checkUser();
     </script>
 </body>
