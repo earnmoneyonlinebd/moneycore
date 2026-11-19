@@ -86,3 +86,39 @@ footer a:hover { color: var(--accent); }
 
 /* SVG Icon Utility */
 .icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Perfectly Aligned Navigation Buttons */
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* আইকন এবং টেক্সটের মাঝখানে সমান ফাঁকা */
+    padding: 10px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-nav:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Universal SVG Icon Alignment */
+.btn-nav svg, .read-more-btn svg, .article-meta svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0; /* আইকন যাতে চেপে না যায় */
+    display: block; /* নিচে বাড়তি স্পেস বন্ধ করে */
+}
