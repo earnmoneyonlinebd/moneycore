@@ -25,7 +25,7 @@ body {
 a { text-decoration: none; color: inherit; transition: color 0.2s; }
 a:hover { color: var(--accent); }
 
-/* Minimal Navigation */
+/* Navigation */
 nav {
     display: flex;
     justify-content: space-between;
@@ -43,82 +43,69 @@ nav {
 .nav-links { display: flex; gap: 1.5rem; align-items: center; }
 .nav-links a { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
 
-/* Container */
-.container { max-width: 1050px; margin: 0 auto; padding: 3rem 5%; }
-
-/* Reading Mode (For Articles) */
+/* Containers */
+.container { max-width: 1100px; margin: 0 auto; padding: 3rem 5%; }
 .reading-container { max-width: 760px; margin: 0 auto; padding: 3rem 5%; }
-.article-header { margin-bottom: 3rem; text-align: center; }
-.article-category { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
-.article-title { font-size: 2.5rem; color: #fff; line-height: 1.3; margin-bottom: 1rem; font-weight: 700; }
-.article-meta { display: flex; justify-content: center; align-items: center; gap: 1.5rem; color: var(--text-muted); font-size: 0.9rem; }
-.article-meta svg { width: 16px; height: 16px; stroke: currentColor; margin-right: 5px; vertical-align: middle; }
 
-/* Article Content */
-.article-content { font-size: 1.15rem; color: #cbd5e1; }
-.article-content h2 { color: #fff; font-size: 1.8rem; margin: 2.5rem 0 1rem; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-.article-content h3 { color: #fff; font-size: 1.4rem; margin: 2rem 0 1rem; font-weight: 600; }
-.article-content p { margin-bottom: 1.5rem; text-align: justify; }
-.article-content ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-.article-content li { margin-bottom: 0.5rem; }
-.article-content a { color: var(--accent); border-bottom: 1px dashed var(--accent); }
-.article-content a:hover { border-bottom: 1px solid var(--accent); }
-
-/* Blog Grid */
-.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.post-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; }
+/* Blog Grid & Cards */
+.post-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+    gap: 2rem; 
+    margin-top: 2rem; 
+}
+.post-card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    padding: 2rem; 
+    transition: transform 0.2s, border-color 0.2s; 
+    display: flex; 
+    flex-direction: column; 
+}
 .post-card:hover { transform: translateY(-3px); border-color: #475569; }
 .post-card-category { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
 .post-card h3 { color: #fff; font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.4; font-weight: 600; flex: 1; }
 .post-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-.read-more-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 600; font-size: 0.95rem; }
-.read-more-btn svg { width: 18px; height: 18px; stroke: currentColor; transition: transform 0.2s; }
-.post-card:hover .read-more-btn svg { transform: translateX(5px); }
 
-/* Ads Placeholder */
-.ad-container { margin: 3rem 0; padding: 2rem; background: #1a1d24; border: 1px dashed var(--border); text-align: center; color: var(--text-muted); border-radius: 8px; font-size: 0.9rem; }
+/* Perfectly Aligned Buttons */
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-nav:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.btn-nav svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* Ads */
+.ad-container { margin: 2rem 0; padding: 2rem; background: #1a1d24; border: 1px dashed var(--border); text-align: center; color: var(--text-muted); border-radius: 8px; font-size: 0.9rem; }
 
 /* Footer */
 footer { text-align: center; padding: 3rem 5%; border-top: 1px solid var(--border); margin-top: 4rem; }
 footer p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
 footer a { color: var(--text-muted); margin: 0 0.5rem; }
 footer a:hover { color: var(--accent); }
-
-/* SVG Icon Utility */
-.icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-/* Perfectly Aligned Navigation Buttons */
-.btn-nav {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* আইকন এবং টেক্সটের মাঝখানে সমান ফাঁকা */
-    padding: 10px 20px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text-main);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.btn-nav:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-}
-
-/* Universal SVG Icon Alignment */
-.btn-nav svg, .read-more-btn svg, .article-meta svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    flex-shrink: 0; /* আইকন যাতে চেপে না যায় */
-    display: block; /* নিচে বাড়তি স্পেস বন্ধ করে */
-}
