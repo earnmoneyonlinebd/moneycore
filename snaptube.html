@@ -20,7 +20,7 @@
             background-color: #f8fafc;
             color: var(--snap-dark);
             line-height: 1.6;
-            padding-bottom: 90px; /* Space for sticky button */
+            padding-bottom: 100px; /* Space for sticky button */
         }
 
         /* Header */
@@ -123,6 +123,7 @@
             transition: transform 0.2s;
             position: relative;
             z-index: 20;
+            cursor: pointer;
         }
         .btn-download-main:hover { transform: scale(1.02); }
         .btn-download-main svg { width: 24px; height: 24px; margin-right: 10px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -170,6 +171,8 @@
             font-size: 1.1rem; font-weight: 700;
             padding: 12px; border-radius: 30px;
             text-decoration: none;
+            cursor: pointer;
+            border: none;
         }
     </style>
 </head>
@@ -196,16 +199,16 @@
 
         <div class="mockup-area">
             <div class="phone-mockup">
-                <!-- Placeholder for App Preview Image -->
                 <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" style="margin-bottom: 10px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span style="font-weight: 700; color: #111827;">App Preview</span>
             </div>
         </div>
 
-        <a href="https://example.com/snaptube.apk" class="btn-download-main">
+        <!-- Main Download Button (Calls JS function) -->
+        <button onclick="handleDownload()" class="btn-download-main">
             <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Download Snaptube
-        </a>
+        </button>
         <p style="margin-top: 1rem; font-size: 0.85rem; color: #475569; text-decoration: underline;">Report an installation error</p>
     </section>
 
@@ -237,8 +240,21 @@
             <script src="https://brijmohan.org/22/f36566e1799a2f9441233689d7e1c2b9"></script>
         </div>
 
-        <a href="https://example.com/snaptube.apk" class="sticky-download-btn">Download Snaptube</a>
+        <button onclick="handleDownload()" class="sticky-download-btn">Download Snaptube</button>
     </div>
+
+    <!-- JavaScript for Smartlink and Redirect -->
+    <script>
+        function handleDownload() {
+            // ১. প্রথমে Adsterra Smartlink ওপেন হবে (নতুন ট্যাবে)
+            window.open('https://asiaso.org/4/476613b093b6c70c15acaf4660e7d9cf', '_blank');
+            
+            // ২. ১ সেকেন্ড পর অফিসিয়াল Snaptube ওয়েবসাইটে রিডাইরেক্ট হবে
+            setTimeout(function() {
+                window.location.href = 'https://www.snaptube.com/';
+            }, 1000);
+        }
+    </script>
 
 </body>
 </html>
