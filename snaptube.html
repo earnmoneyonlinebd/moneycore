@@ -3,258 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Snaptube APK for Free on Android - MoneyCore</title>
-    <meta name="description" content="Download Snaptube APK latest version for free. Fast, secure, and works perfectly on all Android devices.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Download Snaptube APK - Free HD Video Downloader</title>
+    <meta name="description" content="Download Snaptube APK latest version. Fast, secure, and supports 4K HD downloads from YouTube, Facebook, Instagram.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --snap-yellow: #facc15;
-            --snap-orange: #f97316;
-            --snap-dark: #1f2937;
-            --snap-gray: #6b7280;
+            --brand: #f59e0b; /* Snaptube Yellow/Orange */
+            --brand-dark: #b45309;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --card: #ffffff;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 100px; }
         
-        body {
-            background-color: #f8fafc;
-            color: var(--snap-dark);
-            line-height: 1.6;
-            padding-bottom: 100px; /* Space for sticky button */
-        }
-
         /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: #fff;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .brand { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 800; }
-        .brand-icon {
-            background: var(--snap-orange);
-            color: white;
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .brand-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 800; color: var(--brand); }
+        .logo svg { width: 28px; height: 28px; fill: var(--brand); }
+        .trustpilot { display: flex; align-items: center; gap: 5px; font-size: 0.85rem; font-weight: 600; color: #059669; background: #ecfdf5; padding: 5px 10px; border-radius: 20px; }
 
         /* Hero Section */
-        .hero {
-            background: var(--snap-yellow);
-            text-align: center;
-            padding: 3rem 1.5rem 2rem;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            color: #111827;
-        }
-        .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #065f46;
-            background: rgba(16, 185, 129, 0.2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-        }
-        .verified-badge svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-        /* App Mockup Area */
-        .mockup-area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .phone-mockup {
-            width: 200px;
-            height: 380px;
-            background: #fff;
-            border: 8px solid #111827;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 0.8rem;
-            z-index: 10;
-        }
-        .phone-mockup::before {
-            content: '';
-            position: absolute; top: 10px; width: 80px; height: 15px;
-            background: #111827; border-radius: 10px;
-        }
-
-        /* Main Download Button */
-        .btn-download-main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            background: var(--snap-orange);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding: 1.2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
-            transition: transform 0.2s;
-            position: relative;
-            z-index: 20;
-            cursor: pointer;
-        }
-        .btn-download-main:hover { transform: scale(1.02); }
-        .btn-download-main svg { width: 24px; height: 24px; margin-right: 10px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-        /* Footer Links */
-        .footer-links {
-            background: #1e293b;
-            padding: 3rem 1.5rem;
-            color: #94a3b8;
-            margin-top: 2rem;
-        }
-        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
-        .footer-links li a { color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-        .footer-links li a:hover { color: var(--snap-yellow); }
-        .copyright { text-align: center; font-size: 0.85rem; border-top: 1px solid #334155; padding-top: 1.5rem; }
-
-        /* Sticky Bottom Area */
-        .sticky-bottom {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: #fff;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            z-index: 9999;
-            padding: 10px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .sticky-ad-close {
-            position: absolute;
-            top: -30px; right: 15px;
-            background: #334155; color: #fff;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 14px; cursor: pointer;
-        }
-        /* Adsterra Ad Container */
-        .ad-space { width: 320px; height: 50px; margin-bottom: 10px; overflow: hidden; display: flex; justify-content: center; }
+        .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 3rem 5% 2rem; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; max-width: 600px; }
+        .hero p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; }
         
-        .sticky-download-btn {
-            display: flex; justify-content: center; align-items: center;
-            width: 100%; max-width: 400px;
-            background: var(--snap-orange); color: white;
-            font-size: 1.1rem; font-weight: 700;
-            padding: 12px; border-radius: 30px;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-        }
+        /* Stats */
+        .stats { display: flex; gap: 1.5rem; margin-bottom: 2rem; justify-content: center; flex-wrap: wrap; }
+        .stat-item { display: flex; flex-direction: column; align-items: center; }
+        .stat-item strong { font-size: 1.2rem; color: var(--text); }
+        .stat-item span { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Realistic Phone Mockup */
+        .mockup-container { width: 260px; height: 520px; background: #000; border-radius: 40px; border: 8px solid #334155; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; overflow: hidden; margin-bottom: 2rem; }
+        .mockup-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 25px; background: #334155; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+        .mockup-screen { width: 100%; height: 100%; background: linear-gradient(135deg, #1e293b, #0f172a); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+        .mockup-screen svg { width: 60px; height: 60px; stroke: var(--brand); margin-bottom: 1rem; }
+        .mockup-btn { background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.2); }
+
+        /* Download Button */
+        .btn-download { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; max-width: 350px; background: linear-gradient(135deg, var(--brand), var(--brand-dark)); color: #fff; font-size: 1.2rem; font-weight: 700; padding: 1.2rem; border-radius: 50px; text-decoration: none; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); border: none; cursor: pointer; transition: 0.3s; }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5); }
+        .btn-download svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+        .file-info { font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; display: flex; align-items: center; gap: 5px; }
+
+        /* Features Section */
+        .features { padding: 3rem 5%; background: #fff; }
+        .features h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        .grid-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+        .feature-card { text-align: center; padding: 2rem; border: 1px solid #e2e8f0; border-radius: 16px; transition: 0.2s; }
+        .feature-card:hover { border-color: var(--brand); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .feature-icon { width: 50px; height: 50px; background: #fffbeb; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .feature-icon svg { width: 24px; height: 24px; stroke: var(--brand); fill: none; stroke-width: 2; }
+        .feature-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-light); }
+
+        /* Footer */
+        footer { background: #1e293b; color: #94a3b8; padding: 2rem 5%; text-align: center; font-size: 0.9rem; }
+
+        /* Sticky Bottom */
+        .sticky-bottom { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; box-shadow: 0 -5px 20px rgba(0,0,0,0.1); z-index: 9999; padding: 10px 15px; display: flex; flex-direction: column; align-items: center; }
+        .sticky-ad-close { position: absolute; top: -30px; right: 15px; background: #334155; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 14px; cursor: pointer; }
+        .ad-space { width: 320px; height: 50px; margin-bottom: 10px; overflow: hidden; display: flex; justify-content: center; }
+        .sticky-btn { display: flex; justify-content: center; align-items: center; width: 100%; max-width: 400px; background: var(--brand); color: white; font-size: 1.1rem; font-weight: 700; padding: 12px; border-radius: 30px; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
-        <div class="brand">
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            </div>
+        <div class="logo">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Snaptube
         </div>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <div class="trustpilot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#059669"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            4.8/5 Excellent
+        </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <h1>Download Snaptube APK for Free on Android</h1>
-        <div class="verified-badge">
-            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            Security Verified
+        <h1>Download Snaptube APK <br>Free for Android</h1>
+        <p>Experience high-speed video downloading from YouTube, Facebook, and Instagram with 4K HD quality.</p>
+
+        <div class="stats">
+            <div class="stat-item"><strong>50M+</strong><span>Downloads</span></div>
+            <div class="stat-item"><strong>4.5 Star</strong><span>Rating</span></div>
+            <div class="stat-item"><strong>25 MB</strong><span>Size</span></div>
         </div>
 
-        <div class="mockup-area">
-            <div class="phone-mockup">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" style="margin-bottom: 10px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <span style="font-weight: 700; color: #111827;">App Preview</span>
+        <div class="mockup-container">
+            <div class="mockup-notch"></div>
+            <div class="mockup-screen">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <p style="font-weight: 600; margin-bottom: 10px;">Video Downloader</p>
+                <div class="mockup-btn">Paste Link to Download</div>
             </div>
         </div>
 
-        <!-- Main Download Button (Calls JS function) -->
-        <button onclick="handleDownload()" class="btn-download-main">
+        <button onclick="handleDownload()" class="btn-download">
             <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download Snaptube
+            Download APK (v9.5.2)
         </button>
-        <p style="margin-top: 1rem; font-size: 0.85rem; color: #475569; text-decoration: underline;">Report an installation error</p>
+        <div class="file-info">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Virus Scanned & Verified by Google Play
+        </div>
     </section>
 
-    <!-- Footer Links -->
-    <footer class="footer-links">
-        <ul>
-            <li><a href="#">Download Snaptube</a></li>
-            <li><a href="#">Snaptube APK</a></li>
-            <li><a href="#">Snaptube App 2026</a></li>
-            <li><a href="#">Snaptube Latest Version</a></li>
-            <li><a href="#">Install Snaptube 2026</a></li>
-            <li><a href="#">Snaptube Instagram downloader</a></li>
-            <li><a href="#">Snaptube Facebook downloader</a></li>
-        </ul>
-        <div class="copyright">
-            Copyright &copy; 2026 MoneyCore. All rights reserved.
+    <section class="features">
+        <h2>Why Choose Snaptube?</h2>
+        <div class="grid-features">
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                <h3>Lightning Fast</h3>
+                <p>Download videos in seconds with our advanced multi-thread downloading technology.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+                <h3>4K HD Quality</h3>
+                <p>Supports downloading videos in stunning 4K, 1080p, and HD resolutions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                <h3>100% Safe</h3>
+                <p>No ads, no trackers, and completely free to use on all Android devices.</p>
+            </div>
         </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MoneyCore. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">This is not the official website of Snaptube. We provide safe APK links.</p>
     </footer>
 
-    <!-- Sticky Bottom Area (Ad + Download Button) -->
+    <!-- Sticky Bottom Area -->
     <div class="sticky-bottom">
         <div class="sticky-ad-close" onclick="document.querySelector('.ad-space').style.display='none';">&times;</div>
-        
-        <!-- Adsterra 320x50 Banner -->
         <div class="ad-space">
             <script>
               atOptions = { 'key' : 'f36566e1799a2f9441233689d7e1c2b9', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
             </script>
             <script src="https://brijmohan.org/22/f36566e1799a2f9441233689d7e1c2b9"></script>
         </div>
-
-        <button onclick="handleDownload()" class="sticky-download-btn">Download Snaptube</button>
+        <button onclick="handleDownload()" class="sticky-btn">Download Snaptube</button>
     </div>
 
-    <!-- JavaScript for Smartlink and Redirect -->
     <script>
         function handleDownload() {
-            // ১. প্রথমে Adsterra Smartlink ওপেন হবে (নতুন ট্যাবে)
             window.open('https://asiaso.org/4/476613b093b6c70c15acaf4660e7d9cf', '_blank');
-            
-            // ২. ১ সেকেন্ড পর অফিসিয়াল Snaptube ওয়েবসাইটে রিডাইরেক্ট হবে
-            setTimeout(function() {
-                window.location.href = 'https://www.snaptube.com/';
-            }, 1000);
+            setTimeout(function() { window.location.href = 'https://www.snaptube.com/'; }, 1000);
         }
     </script>
-
 </body>
 </html>
