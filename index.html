@@ -2,113 +2,96 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MoneyCore – অ্যাপ গাইড ও সমস্যার সমাধান</title>
 <meta name="description" content="bKash, Nagad, CapCut সহ জনপ্রিয় অ্যাপের ধাপে ধাপে গাইড, সমস্যার সমাধান ও নিরাপত্তা টিপস।">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;700&family=Inter:wght@800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--soft:#f4f6f9;--ink:#0f172a;--text:#334155;--muted:#64748b;--line:#e2e8f0;--accent:#0b3d91;--accent2:#e8eefb}
-@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--soft:#131a2e;--ink:#f1f5f9;--text:#cbd5e1;--muted:#94a3b8;--line:#1f2a44;--accent:#8fb2ff;--accent2:#16213d;color-scheme:dark}}
+:root{--bg:#fff;--ink:#111827;--text:#374151;--muted:#6b7280;--line:#e5e7eb;--accent:#0b3d91}
+@media (prefers-color-scheme:dark){:root{--bg:#0e121a;--ink:#f3f4f6;--text:#d1d5db;--muted:#9ca3af;--line:#262c38;--accent:#8fb2ff;color-scheme:dark}}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Hind Siliguri','Inter',system-ui,sans-serif;font-size:17px;line-height:1.7;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:'Hind Siliguri',system-ui,sans-serif;font-size:17px;line-height:1.75}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-.top{background:var(--ink);color:#cbd5e1;font-size:13px}
-.top .wrap{display:flex;justify-content:space-between;align-items:center;height:34px}
-.top a{color:#fff}
-header.m{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
-.mast{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
-.logo{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px;color:var(--ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.mast{text-align:center;padding:26px 0 14px;border-bottom:1px solid var(--line)}
+.logo{font-family:'Inter',sans-serif;font-weight:800;font-size:38px;letter-spacing:-1.2px;color:var(--ink)}
 .logo b{color:var(--accent)}
-.mnav{display:none;gap:26px;font-size:15.5px;font-weight:500}
-.sbtn{border:1px solid var(--line);background:var(--soft);color:var(--muted);border-radius:6px;padding:7px 14px;font:inherit;font-size:14.5px}
-nav.cats{border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
-nav.cats .wrap{display:flex;gap:24px;white-space:nowrap;font-size:15px;font-weight:500;color:var(--muted)}
-nav.cats a{padding:10px 0;border-bottom:2px solid transparent}
-nav.cats a:first-child{color:var(--accent);border-color:var(--accent)}
-.grid{display:grid;grid-template-columns:1fr;gap:36px;padding:28px 0 20px}
-.meta{font-size:13.5px;color:var(--muted)}
-.tag{color:var(--accent);font-weight:600}
-.feat .img{aspect-ratio:16/9;border-radius:8px;background:linear-gradient(135deg,#0b3d91,#1d6fd8);display:flex;align-items:flex-end;padding:18px;color:#fff;font-family:'Inter',sans-serif;font-weight:800;font-size:34px;letter-spacing:-1px;margin-bottom:16px}
-.feat h1{font-size:30px;line-height:1.35;font-weight:700;color:var(--ink);margin:6px 0 10px}
-.feat p{font-size:18px}
-.sec{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);margin:34px 0 4px;padding-bottom:8px}
-.sec h2{font-size:20px;font-weight:700;color:var(--ink)}
-.sec a{font-size:14px;color:var(--accent);font-weight:500}
-.row a{display:grid;grid-template-columns:1fr 92px;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
-.row h3{font-size:19px;line-height:1.45;font-weight:600;color:var(--ink);margin:3px 0 4px}
-.row p{font-size:15.5px;color:var(--muted);line-height:1.6}
-.th{width:92px;height:92px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:800;font-size:15px;color:var(--accent);background:var(--accent2);border:1px solid var(--line)}
-.ad{margin:24px 0;min-height:280px;background:var(--soft);border:1px solid var(--line);border-radius:6px;text-align:center;padding-top:6px}
-.ad small{font-size:12px;color:var(--muted)}
-.side .box{border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:22px}
-.side h4{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tag{font-size:14.5px;color:var(--muted);margin-top:2px}
+.dateline{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--ink)}
+.dateline a{text-decoration:underline;text-underline-offset:3px}
+nav.cats{overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+nav.cats::-webkit-scrollbar{display:none}
+nav.cats .wrap{display:flex;gap:26px;white-space:nowrap;font-size:15.5px;font-weight:500;padding-top:11px;padding-bottom:11px}
+.grid{display:grid;grid-template-columns:1fr;gap:40px;padding:34px 0 30px}
+.kicker{font-size:14px;font-weight:600;color:var(--accent)}
+.by{font-size:13.5px;color:var(--muted)}
+.lead h1{font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:31px;line-height:1.38;color:var(--ink);margin:8px 0 12px}
+.lead p.dek{font-size:19px;line-height:1.7;margin-bottom:12px}
+.lead a:hover h1,.story a:hover h3{color:var(--accent)}
+.lbl{font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:19px;color:var(--ink);border-top:3px solid var(--ink);padding-top:10px;margin:38px 0 0}
+.story{padding:20px 0;border-bottom:1px solid var(--line)}
+.story h3{font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:21px;line-height:1.5;color:var(--ink);margin:4px 0 6px}
+.story p{font-size:16px;color:var(--text);line-height:1.65;margin-bottom:6px}
+aside .blk{border-top:3px solid var(--ink);padding-top:10px;margin-bottom:30px}
+aside h4{font-family:'Noto Serif Bengali',serif;font-size:18px;color:var(--ink);margin-bottom:6px}
 .pop{list-style:none;counter-reset:n}
-.pop li{counter-increment:n;display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.5;color:var(--ink)}
-.pop li:first-child{border-top:0}
-.pop li:before{content:counter(n);font-family:'Inter',sans-serif;font-weight:700;color:var(--accent);min-width:16px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips a{border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:14.5px;background:var(--soft)}
-.join p{font-size:15px;margin-bottom:12px}
-.join a{display:inline-block;background:var(--accent);color:var(--bg);font-weight:600;font-size:15px;padding:9px 18px;border-radius:6px}
-.note{margin:10px 0 30px;padding:14px 18px;background:var(--soft);border-left:3px solid var(--accent);font-size:14.5px}
+.pop li{counter-increment:n;display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.55;color:var(--ink)}
+.pop li:before{content:counter(n);font-family:'Noto Serif Bengali',serif;font-weight:700;font-size:20px;color:var(--accent);min-width:18px}
+aside p{font-size:15.5px;margin-bottom:8px}
+aside .go{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.note{border-top:1px solid var(--line);padding:16px 0 28px;font-size:14.5px;color:var(--muted)}
 .note strong{color:var(--ink)}
-footer{background:var(--ink);color:#94a3b8;font-size:14.5px;padding:36px 0 30px}
-footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-footer .logo{color:#fff}footer .logo b{color:#8fb2ff}
-footer h5{color:#fff;font-size:14.5px;font-weight:600;margin-bottom:8px}
-footer li{list-style:none;padding:3px 0}
+footer{background:#0f172a;color:#94a3b8;font-size:14.5px;padding:34px 0 28px}
+footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 footer .brand{grid-column:1/-1}
-footer .bot{border-top:1px solid #1f2a44;margin-top:26px;padding-top:16px;font-size:13.5px}
-@media(min-width:900px){.mnav{display:flex}.grid{grid-template-columns:1fr 330px;gap:48px;padding-top:36px}footer .cols{grid-template-columns:2fr 1fr 1fr 1fr}footer .brand{grid-column:auto}.feat h1{font-size:36px}nav.cats{display:none}}
+footer .logo{color:#fff;font-size:26px}
+footer .logo b{color:#8fb2ff}
+footer h5{color:#fff;font-size:14.5px;font-weight:600;margin-bottom:6px}
+footer li{list-style:none;padding:3px 0}
+footer a:hover{color:#fff}
+footer .bot{border-top:1px solid #1f2a44;margin-top:24px;padding-top:14px;font-size:13.5px}
+@media(min-width:900px){.grid{grid-template-columns:1fr 310px;gap:56px;padding-top:40px}.lead h1{font-size:44px}footer .cols{grid-template-columns:2fr 1fr 1fr 1fr}footer .brand{grid-column:auto}}
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap"><span>শনিবার, ২১ নভেম্বর ২০২৬</span><span><a href="#">বাংলা</a> | <a href="/en/">English</a></span></div></div>
-<header class="m">
-  <div class="wrap mast">
-    <a class="logo" href="/">Money<b>Core</b></a>
-    <nav class="mnav"><a href="#">মোবাইল ব্যাংকিং</a><a href="#">ভিডিও এডিটিং</a><a href="#">টেলিকম</a><a href="#">শেখা ও কাজ</a><a href="#">নিরাপত্তা</a></nav>
-    <button class="sbtn">খুঁজুন</button>
-  </div>
-  <nav class="cats"><div class="wrap"><a href="#">সব গাইড</a><a href="#">মোবাইল ব্যাংকিং</a><a href="#">ভিডিও এডিটিং</a><a href="#">টেলিকম</a><a href="#">শেখা ও কাজ</a><a href="#">নিরাপত্তা</a></div></nav>
-</header>
+<div class="wrap">
+  <div class="mast"><div class="logo">Money<b>Core</b></div><div class="tag">অ্যাপ ও অনলাইন সেবার সহজ বাংলা গাইড</div></div>
+  <div class="dateline"><span>শনিবার, ২১ নভেম্বর ২০২৬</span><span><a href="/">বাংলা</a> | <a href="/en/">English</a></span></div>
+</div>
+<nav class="cats"><div class="wrap"><a href="#">সব গাইড</a><a href="#">মোবাইল ব্যাংকিং</a><a href="#">ভিডিও এডিটিং</a><a href="#">টেলিকম</a><a href="#">শেখা ও কাজ</a><a href="#">নিরাপত্তা</a></div></nav>
+
 <main class="wrap">
  <div class="grid">
   <div>
-   <article class="feat"><a href="#">
-     <div class="img">bKash</div>
-     <div class="meta"><span class="tag">মোবাইল ব্যাংকিং</span> &middot; ৮ মিনিটে পড়ুন &middot; হালনাগাদ: ২০ নভেম্বর ২০২৬</div>
+   <article class="lead"><a href="#">
+     <div class="kicker">মোবাইল ব্যাংকিং</div>
      <h1>bKash অ্যাকাউন্টের দৈনিক ও মাসিক লেনদেন সীমা: সম্পূর্ণ গাইড</h1>
-     <p>পার্সোনাল ও এজেন্ট অ্যাকাউন্টে কত টাকা পাঠানো, তোলা ও জমা রাখা যায়, আর সীমা বাড়ানোর নিয়ম কী, তা এক জায়গায়।</p>
+     <p class="dek">পার্সোনাল ও এজেন্ট অ্যাকাউন্টে কত টাকা পাঠানো, তোলা ও জমা রাখা যায়, আর সীমা বাড়ানোর নিয়ম কী, তা এক জায়গায়।</p>
+     <div class="by">MoneyCore সম্পাদকীয় &middot; হালনাগাদ ২০ নভেম্বর ২০২৬ &middot; ৮ মিনিটে পড়ুন</div>
    </a></article>
-   <div class="sec"><h2>সর্বশেষ গাইড</h2><a href="#">সব দেখুন</a></div>
-   <div class="row">
-    <a href="#"><div><div class="meta"><span class="tag">নিরাপত্তা</span> &middot; ২০ নভেম্বর</div><h3>ভুয়া bKash কল চেনার ৫টি উপায় ও প্রতারিত হলে করণীয়</h3><p>কোন কথায় সতর্ক হবেন এবং কোথায় অভিযোগ করবেন।</p></div><div class="th">bKash</div></a>
-    <a href="#"><div><div class="meta"><span class="tag">ভিডিও এডিটিং</span> &middot; ১৮ নভেম্বর</div><h3>CapCut-এ ভিডিও এক্সপোর্ট না হলে কী করবেন</h3><p>স্টোরেজ, ক্যাশ ও রেজোলিউশন সেটিং ঠিক করার ধাপগুলো।</p></div><div class="th">CapCut</div></a>
-   </div>
-   <div class="ad"><small>বিজ্ঞাপন</small></div>
-   <div class="row">
-    <a href="#"><div><div class="meta"><span class="tag">টেলিকম</span> &middot; ১৬ নভেম্বর</div><h3>গ্রামীণফোন, রবি ও বাংলালিংকের ইন্টারনেট প্যাকেজের তুলনা</h3><p>দাম, মেয়াদ ও ডাটার পরিমাণ পাশাপাশি দেখুন।</p></div><div class="th">Data</div></a>
-    <a href="#"><div><div class="meta"><span class="tag">শেখা ও কাজ</span> &middot; ১৪ নভেম্বর</div><h3>Fiverr-এ প্রথম অর্ডার পাওয়ার আগে যা জানা দরকার</h3><p>প্রোফাইল, গিগ ও মূল্য নির্ধারণে নতুনদের সাধারণ ভুল।</p></div><div class="th">Fiverr</div></a>
-    <a href="#"><div><div class="meta"><span class="tag">মোবাইল ব্যাংকিং</span> &middot; ১২ নভেম্বর</div><h3>Nagad থেকে ক্যাশ আউট চার্জ কত, কীভাবে কম দেবেন</h3><p>এজেন্ট, এটিএম ও ব্যাংক ট্রান্সফারের খরচ তুলনা।</p></div><div class="th">Nagad</div></a>
-   </div>
+
+   <h2 class="lbl">সর্বশেষ গাইড</h2>
+   <div class="story"><a href="#"><div class="kicker">নিরাপত্তা</div><h3>ভুয়া bKash কল চেনার ৫টি উপায় ও প্রতারিত হলে করণীয়</h3><p>কোন কথায় সতর্ক হবেন এবং কোথায় অভিযোগ করবেন।</p><div class="by">২০ নভেম্বর ২০২৬</div></a></div>
+   <div class="story"><a href="#"><div class="kicker">ভিডিও এডিটিং</div><h3>CapCut-এ ভিডিও এক্সপোর্ট না হলে কী করবেন</h3><p>স্টোরেজ, ক্যাশ ও রেজোলিউশন সেটিং ঠিক করার ধাপগুলো।</p><div class="by">১৮ নভেম্বর ২০২৬</div></a></div>
+   <div class="story"><a href="#"><div class="kicker">টেলিকম</div><h3>গ্রামীণফোন, রবি ও বাংলালিংকের ইন্টারনেট প্যাকেজের তুলনা</h3><p>দাম, মেয়াদ ও ডাটার পরিমাণ পাশাপাশি দেখুন।</p><div class="by">১৬ নভেম্বর ২০২৬</div></a></div>
+   <div class="story"><a href="#"><div class="kicker">মোবাইল ব্যাংকিং</div><h3>Nagad থেকে ক্যাশ আউট চার্জ কত, কীভাবে কম দেবেন</h3><p>এজেন্ট, এটিএম ও ব্যাংক ট্রান্সফারের খরচ তুলনা।</p><div class="by">১২ নভেম্বর ২০২৬</div></a></div>
+   <div class="story"><a href="#"><div class="kicker">শেখা ও কাজ</div><h3>Fiverr-এ প্রথম অর্ডার পাওয়ার আগে যা জানা দরকার</h3><p>প্রোফাইল, গিগ ও মূল্য নির্ধারণে নতুনদের সাধারণ ভুল।</p><div class="by">১৪ নভেম্বর ২০২৬</div></a></div>
   </div>
-  <aside class="side">
-   <div class="box"><h4>জনপ্রিয় গাইড</h4>
+
+  <aside>
+   <div class="blk"><h4>সবচেয়ে বেশি পড়া</h4>
     <ol class="pop"><li>bKash PIN ভুলে গেলে কীভাবে রিসেট করবেন</li><li>Nagad অ্যাকাউন্ট খোলার সম্পূর্ণ নিয়ম</li><li>CapCut-এ বাংলা সাবটাইটেল যোগ করার উপায়</li><li>WhatsApp ব্যাকআপ রিস্টোর না হলে করণীয়</li></ol></div>
-   <div class="box"><h4>অ্যাপ অনুযায়ী খুঁজুন</h4>
-    <div class="chips"><a href="#">bKash</a><a href="#">Nagad</a><a href="#">Rocket</a><a href="#">CapCut</a><a href="#">Canva</a><a href="#">WhatsApp</a><a href="#">Telegram</a><a href="#">Fiverr</a></div></div>
-   <div class="box join"><h4>নতুন গাইডের খবর পান</h4><p>নতুন গাইড ও সতর্কতা আমরা টেলিগ্রাম চ্যানেলে জানাই।</p><a href="#">টেলিগ্রামে যোগ দিন</a></div>
+   <div class="blk"><h4>আমাদের সম্পর্কে</h4><p>MoneyCore একটি স্বাধীন সম্পাদকীয় সাইট। আমরা প্রতিটি গাইড নিজে যাচাই করে লিখি এবং তথ্য বদলালে হালনাগাদ করি।</p><a class="go" href="about.html">আরও জানুন</a></div>
   </aside>
  </div>
  <div class="note"><strong>MoneyCore একটি স্বাধীন গাইড সাইট।</strong> এখানে উল্লেখ করা কোনো অ্যাপ বা কোম্পানির সাথে আমাদের অফিসিয়াল সম্পর্ক নেই। অ্যাপ ডাউনলোড করতে সবসময় Google Play Store ব্যবহার করুন।</div>
 </main>
+
 <footer><div class="wrap">
  <div class="cols">
-  <div class="brand"><a class="logo" href="/">Money<b>Core</b></a><p style="margin-top:8px;max-width:280px">অ্যাপ ও অনলাইন সেবার সহজ বাংলা গাইড।</p></div>
+  <div class="brand"><div class="logo">Money<b>Core</b></div><p style="margin-top:6px">অ্যাপ ও অনলাইন সেবার সহজ বাংলা গাইড।</p></div>
   <div><h5>বিভাগ</h5><ul><li>মোবাইল ব্যাংকিং</li><li>ভিডিও এডিটিং</li><li>টেলিকম</li><li>নিরাপত্তা</li></ul></div>
-  <div><h5>সাইট</h5><ul><li><a href="about.html">আমাদের সম্পর্কে</a></li><li><a href="contact.html">যোগাযোগ</a></li><li>সম্পাদকীয় নীতি</li></ul></div>
+  <div><h5>সাইট</h5><ul><li><a href="about.html">আমাদের সম্পর্কে</a></li><li><a href="contact.html">যোগাযোগ</a></li></ul></div>
   <div><h5>আইনি</h5><ul><li><a href="privacy.html">প্রাইভেসি পলিসি</a></li><li><a href="terms.html">শর্তাবলী</a></li><li><a href="disclaimer.html">ডিসক্লেইমার</a></li></ul></div>
  </div>
  <div class="bot">&copy; ২০২৬ MoneyCore। সর্বস্বত্ব সংরক্ষিত।</div>
