@@ -1,31 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://moneycore.devs.surf/</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/signup.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/login.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/earn.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/terms.html</loc>
-    <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/privacy.html</loc>
-    <priority>0.50</priority>
-  </url>
-  <url>
-    <loc>https://moneycore.devs.surf/contact.html</loc>
-    <priority>0.50</priority>
-  </url>
+  <url><loc>https://moneycore.devs.surf/</loc></url>
+  <url><loc>https://moneycore.devs.surf/about.html</loc></url>
+  <url><loc>https://moneycore.devs.surf/contact.html</loc></url>
+  <url><loc>https://moneycore.devs.surf/privacy.html</loc></url>
+  <url><loc>https://moneycore.devs.surf/terms.html</loc></url>
+  <url><loc>https://moneycore.devs.surf/disclaimer.html</loc></url>
 </urlset>
